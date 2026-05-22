@@ -1,0 +1,32 @@
+[project]
+name = "vr-teleop"
+version = "0.1.0"
+description = "Teleop bridge from a Godot/Meta Quest XR app to an SO-101 arm."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "pyyaml>=6.0",
+    "websockets>=15.0",
+    "numpy>=2.0",
+    "lerobot==0.4.4",
+    "placo>=0.9.6",
+    "feetech-servo-sdk>=1.0.0",
+    "opencv-python>=4.8",
+    "aiohttp>=3.10",
+]
+
+[project.scripts]
+vr-teleop = "vr_teleop.runtime.loop:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.6",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["vr_teleop"]

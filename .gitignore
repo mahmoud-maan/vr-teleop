@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.uv/
+
+# Datasets (large; local only)
+datasets/
+
+# Outputs / logs
+outputs/
+*.log
+
+# Local config overrides
+conf/*.local.yaml
+
+# TLS (generate locally)
+ssl_cert/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+
+# Secrets
+.env
+*.pem
+*.key
