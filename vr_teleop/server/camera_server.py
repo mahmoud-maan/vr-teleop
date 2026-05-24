@@ -105,8 +105,10 @@ class CameraServer:
         """Push a new BGR frame for ``name``. No-op if the camera isn't known."""
         if frame is None or name not in self._frames:
             return
+        # OpenCV frames are BGR; JPEG decoders (Godot, browsers) expect RGB.
+        rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         encode_params = [int(cv2.IMWRITE_JPEG_QUALITY), self.jpeg_quality]
-        ok, buf = cv2.imencode(".jpg", frame, encode_params)
+        ok, buf = cv2.imencode(".jpg", rgb, encode_params)
         if not ok:
             return
         self._frames[name].update(buf.tobytes())
