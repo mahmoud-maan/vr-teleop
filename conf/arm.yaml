@@ -21,7 +21,7 @@ cameras:
 arms:
   right:                 # change to "left" if you grip with your left controller
     type: so100
-    port: /dev/ttyACM1
+    port: /dev/ttyACM0
     use_degrees: true
     cameras: [wrist]          # which declared cameras are attached to this arm
     regularization: 1.0e-3
@@ -59,7 +59,7 @@ camera_server:
 #                        #                        NVENC on any NVIDIA driver).
 
 dataset:
-  repo_id: "maan/vr_wrist_test"          # owner/name; folder name on disk
+  repo_id: "maanm/vr_teleop"          # owner/name; folder name on disk
   single_task: "Pick the red cube and put it in the bin"       # human description of what you're recording
   push_to_hub: false                     # set to true later if you want to publish
   root: "./datasets"
