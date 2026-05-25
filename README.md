@@ -5,7 +5,49 @@ controller poses over WebSocket, runs them through an IK pipeline, drives an
 SO-101 arm, optionally records episodes to a LeRobot dataset, and streams the
 robot's cameras back to the headset via MJPEG.
 
+## Demos
+
+### Quest XR app — UI, cameras & episode recording
+
+In-headset capture of the Godot client: navigating the app, live MJPEG camera
+feeds from the robot and recording a teleop episode.
+
+<video src="https://github.com/user-attachments/assets/ce786764-7078-4975-9a06-a1d28916a4a4" controls width="720">
+  <a href="https://github.com/user-attachments/assets/ce786764-7078-4975-9a06-a1d28916a4a4">App UI &amp; episode recording (AppUI.mp4)</a>
+</video>
+
+### Teleoperation — responsiveness
+
+Footage of VR teleop: 6-DoF controller poses streamed over
+WebSocket, remapped through the IK pipeline, and sent to the SO-101 arm in real
+time.
+
+<video src="https://github.com/user-attachments/assets/2b87af35-2860-4105-9a38-4c03d6a2e205" controls width="720">
+  <a href="https://github.com/user-attachments/assets/2b87af35-2860-4105-9a38-4c03d6a2e205">Teleoperation demo 1 (teleop1.mp4)</a>
+</video>
+
+<video src="https://github.com/user-attachments/assets/1aa3257c-fa38-49ca-bc2c-ccd182ac7f71" controls width="720">
+  <a href="https://github.com/user-attachments/assets/1aa3257c-fa38-49ca-bc2c-ccd182ac7f71">Teleoperation demo 2 (teleop2.mp4)</a>
+</video>
+
+### Pick-and-place — dataset episodes
+
+Performing a pick-and-place task via VR teleop and recording LeRobot episodes.
+
+<video src="https://github.com/user-attachments/assets/bdfccca9-3ed9-41b5-aa73-3d40079a01d9" controls width="720">
+  <a href="https://github.com/user-attachments/assets/bdfccca9-3ed9-41b5-aa73-3d40079a01d9">Pick-and-place recording 1 (rec1.mp4)</a>
+</video>
+
+<video src="https://github.com/user-attachments/assets/edacabd1-d2f0-4cd4-ae8e-7c48f18c6e28" controls width="720">
+  <a href="https://github.com/user-attachments/assets/edacabd1-d2f0-4cd4-ae8e-7c48f18c6e28">Pick-and-place recording 2 (rec2.mp4)</a>
+</video>
+
 ## Install
+
+```bash
+git clone https://github.com/mahmoud-maan/vr-teleop.git
+cd vr-teleop
+```
 
 Install [`uv`](https://docs.astral.sh/uv/) if you don't have it:
 
@@ -136,3 +178,35 @@ vr_teleop/
 The first time you connect, follow the prompts in the terminal to calibrate
 each joint (mid → max → min). Calibration values are persisted by LeRobot and
 re-used on subsequent runs.
+
+## Hosting demo videos
+
+The `pro-vid/` folder stays local (gitignored). To embed videos in this README
+without committing them to the repo, upload them to GitHub's CDN via a draft
+issue:
+
+1. Open your repo on GitHub → **Issues** → **New issue**.
+2. Drag each file from `pro-vid/` into the comment box (you can drop all five at
+   once). GitHub uploads them and inserts markdown like
+   `https://github.com/user-attachments/assets/<uuid>`.
+3. For each upload, **right-click the preview → Copy video address** (or open
+   the link in a new tab and copy the final `.mp4` / `.mov` URL from the address
+   bar). That direct URL goes into the `<video src="…">` tags above.
+4. Map URLs to placeholders:
+   - `AppUI.mp4` → `TODO-APPUI`
+   - `teleop1.MOV` → `TODO-TELEOP1`
+   - `teleop2.MOV` → `TODO-TELEOP2`
+   - `rec1.MOV` → `TODO-REC1`
+   - `rec2.MOV` → `TODO-REC2`
+5. You do **not** need to submit the issue — close the tab once you've copied
+   the URLs. The CDN links keep working.
+
+**Size limit:** issue attachments are capped at **10 MB** per file. Compress
+oversized files first, e.g.:
+
+```bash
+ffmpeg -i pro-vid/teleop1.MOV -vf scale=1280:-2 -c:v libx264 -crf 28 -an pro-vid/teleop1.mp4
+```
+
+Files over 10 MB can instead be attached to a [GitHub Release](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository)
+(tag `demo-videos`, no code changes required) and linked from the README.
