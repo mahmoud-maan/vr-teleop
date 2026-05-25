@@ -8,6 +8,9 @@ venv/
 # Datasets (large; local only)
 datasets/
 
+# Demo videos (hosted on GitHub CDN — see README)
+pro-vid/
+
 # Outputs / logs
 outputs/
 *.log
