@@ -178,35 +178,3 @@ vr_teleop/
 The first time you connect, follow the prompts in the terminal to calibrate
 each joint (mid → max → min). Calibration values are persisted by LeRobot and
 re-used on subsequent runs.
-
-## Hosting demo videos
-
-The `pro-vid/` folder stays local (gitignored). To embed videos in this README
-without committing them to the repo, upload them to GitHub's CDN via a draft
-issue:
-
-1. Open your repo on GitHub → **Issues** → **New issue**.
-2. Drag each file from `pro-vid/` into the comment box (you can drop all five at
-   once). GitHub uploads them and inserts markdown like
-   `https://github.com/user-attachments/assets/<uuid>`.
-3. For each upload, **right-click the preview → Copy video address** (or open
-   the link in a new tab and copy the final `.mp4` / `.mov` URL from the address
-   bar). That direct URL goes into the `<video src="…">` tags above.
-4. Map URLs to placeholders:
-   - `AppUI.mp4` → `TODO-APPUI`
-   - `teleop1.MOV` → `TODO-TELEOP1`
-   - `teleop2.MOV` → `TODO-TELEOP2`
-   - `rec1.MOV` → `TODO-REC1`
-   - `rec2.MOV` → `TODO-REC2`
-5. You do **not** need to submit the issue — close the tab once you've copied
-   the URLs. The CDN links keep working.
-
-**Size limit:** issue attachments are capped at **10 MB** per file. Compress
-oversized files first, e.g.:
-
-```bash
-ffmpeg -i pro-vid/teleop1.MOV -vf scale=1280:-2 -c:v libx264 -crf 28 -an pro-vid/teleop1.mp4
-```
-
-Files over 10 MB can instead be attached to a [GitHub Release](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository)
-(tag `demo-videos`, no code changes required) and linked from the README.
